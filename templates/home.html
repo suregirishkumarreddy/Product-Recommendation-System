@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container">
+<p>Enter Customer Name</p>
+
+<form action="{{url_for('login')}}">
+    <input type="text" name="name" class="form-control">
+    <input type="submit" class="btn btn-info" value="LOGIN">
+</form>
+
+
+<p>Enter Product Name</p>
+
+<form action="{{url_for('sim_prod')}}">
+    <input type="text" name="prod" class="form-control">
+    <input type="submit" class="btn btn-info" value="SIMILAR PRODUCTS">
+</form>
+
+
+</div>
+
+
+<div class="container">
+{% include 'mostpopulartable.html' %}
+
+{% include 'topselltable.html' %}
+</div>
+
+
+{% endblock %}

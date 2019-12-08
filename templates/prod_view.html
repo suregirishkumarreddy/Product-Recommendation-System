@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<div class="container">
+  {% if prod.replace(' ','') == '' %}
+
+     <h3>Invalid Product Name. Please go to Home page and enter a correct product name.</h3>
+
+  {% else %}
+
+     {% if exists=='n' %}
+
+        <h3>Entered Product Name does not exist. Please go to Home page and enter a correct product name.</h3>
+
+     {% else %}
+
+        <h2>Products similar to "{{prod}}"</h2>
+        {% include 'similarprodtable.html' %}
+
+     {% endif %}
+
+  {% endif %}
+</div>
+
+
+{% endblock %}
