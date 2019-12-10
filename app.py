@@ -1,24 +1,34 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[59]:
+# In[5]:
 
 
 import pandas as pd
+from os import getcwd
 import pickle
 from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
-prod_ranking_model = pickle.load(open('prod_ranking_model.pkl','rb'))
-cust_prod_ranking_model = pickle.load(open('cust_prod_ranking_model.pkl','rb'))
-cust_correlation_model = pickle.load(open('cust_correlation_model.pkl','rb'))
-prod_correlation_model = pickle.load(open('prod_correlation_model.pkl','rb'))
+
+directory = getcwd()
+
+
+# # Import the required Pickle files
+
+# In[6]:
+
+
+prod_ranking_model = pickle.load(open(directory + '\prod_ranking_model.pkl','rb'))
+cust_prod_ranking_model = pickle.load(open(directory + '\cust_prod_ranking_model.pkl','rb'))
+cust_correlation_model = pickle.load(open(directory + '\cust_correlation_model.pkl','rb'))
+prod_correlation_model = pickle.load(open(directory + '\prod_correlation_model.pkl','rb'))
 
 
 # # HTML code for displaying Table
 
-# In[69]:
+# In[7]:
 
 
 # This function structures the HTML code for displaying the table on website
@@ -35,8 +45,8 @@ def html_code_table(prod_df,table_name,file_name,side):
         
     html_code = html_code + '</table>'
     
-    file_path = "C:/Users/sureg/Desktop/Girish/Learning/Data Science/Python - My Projects/Narayana Retail Analytics - Capstone/templates/"
-    #file_path = "C:/Users/prths/Desktop/Girish/Data Science/Capstone Project/templates/"
+    file_path = directory + '/templates/'
+    
     hs = open(file_path + file_name + '.html', 'w')
     hs.write(html_code)
     
@@ -45,7 +55,7 @@ def html_code_table(prod_df,table_name,file_name,side):
 
 # # Most Popular and Top Selling Products
 
-# In[61]:
+# In[8]:
 
 
 # This function calls the html_code_table function to create a .html file for Most Popular Products
@@ -63,7 +73,7 @@ def top_sell_table():
 
 # # Customer Frequently Purchased and Purchased the Most Products
 
-# In[64]:
+# In[9]:
 
 
 # This function calls the html_code_table function to create a .html file for Most Popular Products of a Customer
@@ -84,7 +94,7 @@ def cust_top_sell_table(cust_name):
 
 # # Products Customer may Like
 
-# In[80]:
+# In[10]:
 
 
 # This function performs the below functionality for the input customer
@@ -131,7 +141,7 @@ def recommend_prod_cust(cust_name):
 
 # # Similar Products to Display
 
-# In[81]:
+# In[11]:
 
 
 # This function performs the below functionality for the input product
@@ -156,28 +166,9 @@ def similar_prods(prod_name):
     html_code_table(similar_prods,'Customers who purchased this product also purchased these','similarprodtable','left')
 
 
-# In[79]:
-
-
-#most_popular_table()
-#top_sell_table()
-
-#cust_name = str('DVR-CHITWELI').upper()
-#print(cust_name)
-
-#cust_most_popular_table(cust_name)
-#cust_top_sell_table(cust_name)
-
-
-#recommend_prod_cust(cust_name)
-
-
-#similar_prods('GOLD LEAF SITTING(1')
-
-
 # 
 
-# In[67]:
+# In[12]:
 
 
 @app.route("/")
@@ -224,13 +215,5 @@ if __name__ == "__main__":
 # In[ ]:
 
 
-# when home.html is executed, displays 2 tables side by side and below these 2 text boxes for Customer Name and Product Name.
-# when Customer Name is entered and clicked on LOGIN button, same home.html is displayed with 3 other tables below.
 
-
-# base.html contains the title name in the top and my details in the bottom. It provides a place to insert the block in between
-
-# home.html - shows 2 tables and 2 text boxes. This code is inserted as a block in base.html
-
-# customer-home.html - executes
 
