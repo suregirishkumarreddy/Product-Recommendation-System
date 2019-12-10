@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[14]:
+# In[15]:
 
 
 import pandas as pd
@@ -142,12 +142,13 @@ def recommend_prod_cust(cust_name):
 
 # # Similar Products to Display
 
-# In[11]:
+# In[19]:
 
 
 # This function performs the below functionality for the input product
 # - get the list of products with similar purchasing pattern and correlation coefficient
 # - get the price of each product from prod_ranking_model
+# - get the price of input product and return to main
 # - drop the product in view from the list
 # - sort them by the correlation coefficient
 # - calls the html_code_table function to create a .html file for top 10 products similar to the product in view
@@ -157,14 +158,18 @@ def similar_prods(prod_name):
     
     similar_prods = pd.merge(similar_prods_corr,prod_ranking_model[['Product','Rate']],how='left',on='Product')
     
-    drop_index = similar_prods[similar_prods['Product'] == prod_name].index
-    similar_prods.drop(index=drop_index,inplace=True)
+    prod_price = similar_prods[similar_prods['Product'] == prod_name]['Rate'].values[0]
+    
+    input_prod_index = similar_prods[similar_prods['Product'] == prod_name].index
+    similar_prods.drop(index=input_prod_index,inplace=True)
     
     similar_prods = similar_prods[['Product','Rate']].head(10).reset_index(drop=True)
     
     #print(similar_prods)
     
     html_code_table(similar_prods,'Customers who purchased this product also purchased these','similarprodtable','left')
+    
+    return prod_price
 
 
 # 
@@ -186,7 +191,6 @@ def login():
     top_sell_table()
     
     cust_name = str(request.args.get('name')).upper()
-    #cust_name = str('balaji plastics').upper()
     
     if cust_name in cust_prod_ranking_model['Party'].unique():
         cust_most_popular_table(cust_name)
@@ -200,11 +204,10 @@ def login():
 @app.route("/sim_prod")
 def sim_prod():
     prod_name = str(request.args.get('prod')).upper()
-    #cust_name = str('gold leaf sitting(1').upper()
     
     if prod_name in prod_ranking_model['Product'].unique():
-        similar_prods(prod_name)
-        return render_template('prod_view.html',prod=prod_name,exists='y')
+        prod_price = similar_prods(prod_name)
+        return render_template('prod_view.html',prod=prod_name,price=prod_price,exists='y')
     else:
         return render_template('prod_view.html',prod=prod_name,exists='n')
 
