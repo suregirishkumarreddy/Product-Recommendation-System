@@ -1,11 +1,12 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[5]:
+# In[14]:
 
 
 import pandas as pd
-from os import getcwd
+import os
+from os  import getcwd
 import pickle
 from flask import Flask, render_template, request
 
@@ -20,10 +21,10 @@ directory = getcwd()
 # In[6]:
 
 
-prod_ranking_model = pickle.load(open(directory + 'prod_ranking_model.pkl','rb'))
-cust_prod_ranking_model = pickle.load(open(directory + 'cust_prod_ranking_model.pkl','rb'))
-cust_correlation_model = pickle.load(open(directory + 'cust_correlation_model.pkl','rb'))
-prod_correlation_model = pickle.load(open(directory + 'prod_correlation_model.pkl','rb'))
+prod_ranking_model = pickle.load(open(os.path.join(directory,'prod_ranking_model.pkl'),'rb'))
+cust_prod_ranking_model = pickle.load(open(os.path.join(directory,'cust_prod_ranking_model.pkl'),'rb'))
+cust_correlation_model = pickle.load(open(os.path.join(directory,'cust_correlation_model.pkl'),'rb'))
+prod_correlation_model = pickle.load(open(os.path.join(directory,'prod_correlation_model.pkl'),'rb'))
 
 
 # # HTML code for displaying Table
@@ -45,7 +46,7 @@ def html_code_table(prod_df,table_name,file_name,side):
         
     html_code = html_code + '</table>'
     
-    file_path = directory + '/templates/'
+    file_path = os.path.join(directory,'templates/')
     
     hs = open(file_path + file_name + '.html', 'w')
     hs.write(html_code)
