@@ -20,10 +20,10 @@ directory = getcwd()
 # In[6]:
 
 
-prod_ranking_model = pickle.load(open(directory + '\prod_ranking_model.pkl','rb'))
-cust_prod_ranking_model = pickle.load(open(directory + '\cust_prod_ranking_model.pkl','rb'))
-cust_correlation_model = pickle.load(open(directory + '\cust_correlation_model.pkl','rb'))
-prod_correlation_model = pickle.load(open(directory + '\prod_correlation_model.pkl','rb'))
+prod_ranking_model = pickle.load(open(directory + 'prod_ranking_model.pkl','rb'))
+cust_prod_ranking_model = pickle.load(open(directory + 'cust_prod_ranking_model.pkl','rb'))
+cust_correlation_model = pickle.load(open(directory + 'cust_correlation_model.pkl','rb'))
+prod_correlation_model = pickle.load(open(directory + 'prod_correlation_model.pkl','rb'))
 
 
 # # HTML code for displaying Table
