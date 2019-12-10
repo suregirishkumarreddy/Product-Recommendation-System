@@ -1,0 +1,9 @@
+Create Procfile - Directly on Github Repo - app (Python program name):app
+
+Create requirements.txt (with small 'r')
+
+Create .gitattributes - Directly on Github Repo
+
+Load Pickle files
+Load Template files
+Load Python program .py file
