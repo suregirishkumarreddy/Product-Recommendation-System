@@ -201,8 +201,8 @@ def login():
         return render_template('cust_home.html',name=cust_name,new='y')
 
     
-@app.route("/sim_prod")
-def sim_prod():
+@app.route("/view")
+def view():
     prod_name = str(request.args.get('prod')).upper()
     
     if prod_name in prod_ranking_model['Product'].unique():
