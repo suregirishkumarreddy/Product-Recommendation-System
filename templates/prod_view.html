@@ -2,26 +2,32 @@
 
 {% block content %}
 
-
 <div class="container">
-  {% if prod.replace(' ','') == '' %}
+    {% if prod.replace(' ','') == '' %}
 
-     <h3>Invalid Product Name. Please go to Home page and enter a correct product name.</h3>
+       <div class="jumbotron">
+         <h3 style="font-weight: bold; color:red;">Invalid Product Name. Please go to Home page and enter a correct product name.</h3>
+       </div>
 
-  {% else %}
+    {% else %}
 
-     {% if exists=='n' %}
+      {% if exists=='n' %}
 
-        <h3>Entered Product Name does not exist. Please go to Home page and enter a correct product name.</h3>
+        <div class="jumbotron">
+          <h3 style="font-weight: bold; color:red;">Entered Product Name does not exist. Please go to Home page and enter a correct product name.</h3>
+        </div>
 
-     {% else %}
+      {% else %}
 
-        <h2>"{{prod}}" - Price: Rs. {{price}}</h2>
+        <div class="jumbotron">
+          <h2 style="font-weight: bold; color:blue;">"{{prod}}" - Price: Rs. {{price}}</h2>
+        </div>
+
         {% include 'similarprodtable.html' %}
 
-     {% endif %}
+      {% endif %}
 
-  {% endif %}
+    {% endif %}
 </div>
 
 

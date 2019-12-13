@@ -2,36 +2,38 @@
 
 {% block content %}
 
-
 <div class="container">
-  {% if name.replace(' ','') == '' %}
 
-     <h3>Invalid Customer Name. Please go to Home page and enter a correct name.</h3>
+  <div class="jumbotron">
+    {% if name.replace(' ','') == '' %}
 
-  {% else %}
+      <h3 style="font-weight: bold; color:red;">Invalid Customer Name. Please go to Home page and enter a correct name.</h3>
 
-     {% if new=='y' %}
+    {% else %}
 
-        <h2>Welcome, "{{name}}"</h2>
-        <h3>Hope you have a great experience</h3>
+      {% if new=='y' %}
 
-     {% else %}
+        <h2 style="font-weight: bold; color:blue;">Welcome, "{{name}}"</h2>
+        <br>
+        <h3 style="font-weight: bold; color:blue;">Hope you have a great experience</h3>
 
-        <h2>Welcome, "{{name}}"</h2>
+      {% else %}
+
+        <h2 style="font-weight: bold; color:blue;">Welcome, "{{name}}"</h2>
+        <br>
         {% include 'custmostpopulartable.html' %}
         {% include 'custtopselltable.html' %}
         {% include 'prodrecommendtable.html' %}
 
-     {% endif %}
+      {% endif %}
 
-  {% endif %}
+    {% endif %}
+  </div>
 </div>
 
-
 <div class="container">
-{% include 'mostpopulartable.html' %}
-
-{% include 'topselltable.html' %}
+  {% include 'mostpopulartable.html' %}
+  {% include 'topselltable.html' %}
 </div>
 
 
