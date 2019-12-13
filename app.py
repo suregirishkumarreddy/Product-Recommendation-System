@@ -35,7 +35,7 @@ prod_correlation_model = pickle.load(open(os.path.join(directory,'prod_correlati
 # This function structures the HTML code for displaying the table on website
 def html_code_table(prod_df,table_name,file_name,side):
     table_style = '<table style="border: 2px solid; float: ' + side + '; width: 40%;">'
-    table_head = '<caption style="font-size: 160%; font-weight: bold;"><strong>' + table_name + '</strong></caption>'
+    table_head = '<caption style="text-align: center; caption-side: top; font-size: 140%; font-weight: bold; color:black;"><strong>' + table_name + '</strong></caption>'
     table_head_row = '<tr><th>Product Name</th><th>Price (in Rs.)</th></tr>'
     
     html_code = table_style + table_head + table_head_row
